@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shoess Collection — Premium Footwear Atelier, Bijainagar</title>
+  <meta name="description" content="Shoess Collection · Bijainagar's premium footwear atelier. Curated sneakers, formals, loafers, sports, sandals. Pan-India delivery, COD, easy returns. Order on WhatsApp." />
+  <meta name="theme-color" content="#071910" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600;1,9..144,800&family=Inter:wght@300;400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:    '#071910',  // primary dark
+            ink2:   '#0B2218',  // card bg on dark
+            ink3:   '#102C22',  // border/divider on dark
+            cream:  '#F8F3E9',  // primary light
+            cream2: '#EDE4D2',  // muted / subtle light
+            cream3: '#D8CBB2',  // warm divider on cream
+          },
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            serif:   ['Italiana', 'serif'],
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            luxe: '0 30px 80px -30px rgba(0,0,0,0.55)',
+            card: '0 24px 60px -28px rgba(7,25,16,0.35)',
+            soft: '0 12px 40px -20px rgba(7,25,16,0.25)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter', sans-serif; background:#071910; color:#F8F3E9; overflow-x:hidden; }
+    ::selection { background:#F8F3E9; color:#071910; }
+
+    /* Grain */
+    .grain::before {
+      content:''; position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay; z-index:1;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+    .grain-light::before { mix-blend-mode:multiply; opacity:.035; }
+
+    /* Reveal */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal-d1 { transition-delay:.08s; } .reveal-d2 { transition-delay:.16s; }
+    .reveal-d3 { transition-delay:.24s; } .reveal-d4 { transition-delay:.32s; }
+
+    /* Marquee */
+    @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    .marquee-track { animation: marquee 34s linear infinite; }
+    .marquee-slow  { animation: marquee 60s linear infinite; }
+
+    /* Hero kinetic */
+    @keyframes rise { 0% { transform:translateY(115%); opacity:0; } 100% { transform:translateY(0); opacity:1; } }
+    .rise { overflow:hidden; display:inline-block; }
+    .rise > span { display:inline-block; animation: rise 1s cubic-bezier(.22,1,.3,1) both; }
+
+    /* Shine — two-tone, cream highlight */
+    .shine { position:relative; overflow:hidden; isolation:isolate; }
+    .shine::after {
+      content:''; position:absolute; top:0; left:-60%; width:40%; height:100%; z-index:1; pointer-events:none;
+      background:linear-gradient(100deg, transparent, rgba(248,243,233,.28), transparent);
+      transform:skewX(-20deg); transition:left .8s ease;
+    }
+    .shine:hover::after { left:130%; }
+    /* shine on cream bg — use ink highlight */
+    .shine-dark::after { background:linear-gradient(100deg, transparent, rgba(7,25,16,.18), transparent); }
+
+    .card-lift { transition: transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s ease, border-color .4s ease; }
+    .card-lift:hover { transform: translateY(-8px); }
+
+    :focus-visible { outline:2px solid currentColor; outline-offset:3px; border-radius:6px; }
+
+    /* Ornaments */
+    .ornament { display:flex; align-items:center; gap:14px; color:currentColor; opacity:.85; }
+    .ornament::before, .ornament::after {
+      content:''; flex:1; height:1px; background:linear-gradient(90deg, transparent, currentColor, transparent); opacity:.4;
+    }
+    .ornament-left::before { display:none; }
+    .ornament-left::after  { max-width:120px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .rise > span, .marquee-track, .marquee-slow, .shine::after {
+        animation:none !important; transition:none !important; transform:none !important; opacity:1 !important; left:-60% !important;
+      }
+      html { scroll-behavior:auto; }
+    }
+
+    /* Two-tone section backgrounds */
+    .bg-hero {
+      background:
+        radial-gradient(1100px 700px at 85% 0%,  rgba(248,243,233,.08), transparent 55%),
+        radial-gradient(1000px 700px at 0% 60%,  rgba(16,44,34,.9), transparent 60%),
+        linear-gradient(180deg, #071910 0%, #0B2218 60%, #071910 100%);
+    }
+    .bg-dark-section {
+      background:
+        radial-gradient(800px 500px at 100% 0%, rgba(248,243,233,.05), transparent 60%),
+        radial-gradient(600px 500px at 0% 100%, rgba(16,44,34,.8), transparent 55%),
+        #071910;
+    }
+    .bg-cream-section {
+      background:
+        radial-gradient(900px 500px at 0% 0%,    rgba(7,25,16,.05), transparent 60%),
+        radial-gradient(700px 500px at 100% 100%, rgba(7,25,16,.03), transparent 60%),
+        #F8F3E9;
+    }
+    .bg-visit {
+      background:
+        radial-gradient(1200px 700px at 25% 110%, rgba(248,243,233,.08), transparent 55%),
+        radial-gradient(900px 600px at 80% 0%,   rgba(16,44,34,.8), transparent 60%),
+        linear-gradient(180deg, #0B2218 0%, #071910 100%);
+    }
+
+    .vtext { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+    .tilt-img { transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+    .group:hover .tilt-img { transform: scale(1.08) rotate(-0.6deg); }
+
+    /* Desaturate product images slightly so they fit the palette */
+    .tinted { filter: saturate(0.88) contrast(1.03); }
+
+    .glass      { background:rgba(7,25,16,.55);   backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); }
+    .glass-cream{ background:rgba(248,243,233,.7); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); }
+
+    /* Mobile Menu */
+    .mobile-menu { position:fixed; inset:0; z-index:100; pointer-events:none; visibility:hidden; }
+    .mobile-menu.open { pointer-events:auto; visibility:visible; }
+    .mobile-overlay { position:absolute; inset:0; background:rgba(7,25,16,.7); backdrop-filter:blur(6px); opacity:0; transition:opacity .35s ease; }
+    .mobile-menu.open .mobile-overlay { opacity:1; }
+    .mobile-drawer { position:absolute; top:0; right:0; width:min(320px,85vw); height:100%; background:#0B2218; border-left:1px solid rgba(248,243,233,.15); transform:translateX(100%); transition:transform .4s cubic-bezier(.2,.7,.2,1); display:flex; flex-direction:column; padding:24px; overflow-y:auto; }
+    .mobile-menu.open .mobile-drawer { transform:translateX(0); }
+    .hamburger { display:flex; flex-direction:column; gap:5px; width:24px; cursor:pointer; padding:4px 0; background:none; border:none; }
+    .hamburger span { display:block; height:2px; width:100%; background:#F8F3E9; border-radius:2px; transition:all .3s ease; }
+    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+    /* Mobile touch-friendly adjustments */
+    @media (max-width:639px) {
+      .hero-h1 { font-size:clamp(36px,10vw,52px) !important; }
+      .stat-num { font-size:clamp(28px,8vw,36px) !important; }
+    }
+    @media (max-width:767px) {
+      .card-lift:hover { transform:none; }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- Top Ticker -->
+  <div class="bg-cream text-ink text-[10px] md:text-[11px] tracking-[0.25em] md:tracking-[0.3em] uppercase font-medium border-b border-cream3/50">
+    <div class="overflow-hidden"><div class="flex whitespace-nowrap marquee-slow py-2">
+      <ul class="flex items-center gap-10 pr-10">
+        <li>Free Delivery · Orders ₹1999+</li><li class="opacity-40">—</li>
+        <li>Cash on Delivery</li><li class="opacity-40">—</li>
+        <li>7-Day Easy Exchange</li><li class="opacity-40">—</li>
+        <li>Handpicked · Bijainagar · Since 2019</li><li class="opacity-40">—</li>
+        <li>DM to Order · Reply in 10 mins</li><li class="opacity-40">—</li>
+      </ul>
+      <ul aria-hidden="true" class="flex items-center gap-10 pr-10">
+        <li>Free Delivery · Orders ₹1999+</li><li class="opacity-40">—</li>
+        <li>Cash on Delivery</li><li class="opacity-40">—</li>
+        <li>7-Day Easy Exchange</li><li class="opacity-40">—</li>
+        <li>Handpicked · Bijainagar · Since 2019</li><li class="opacity-40">—</li>
+        <li>DM to Order · Reply in 10 mins</li><li class="opacity-40">—</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 inset-x-0 z-50 glass border-b border-ink3">
+    <nav class="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/50">
+          <svg viewBox="0 0 24 24" class="h-5 w-5 text-cream" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M3 16c1-3 3-5 6-6l4-1 2 2 4 1c1 0 2 1 2 2v2H3z"/>
+            <path d="M7 16v2M11 16v2M15 16v2"/>
+          </svg>
+        </span>
+        <span class="leading-none">
+          <span class="block font-serif tracking-[0.35em] text-[10px] text-cream/70">EST · 2019</span>
+          <span class="block font-display text-lg tracking-wide mt-0.5 text-cream">Shoess <span class="italic">Collection</span></span>
+        </span>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-9 text-[13px] tracking-wide text-cream/75">
+        <li><a class="hover:text-cream transition-colors duration-200" href="#categories">Categories</a></li>
+        <li><a class="hover:text-cream transition-colors duration-200" href="#bestsellers">Bestsellers</a></li>
+        <li><a class="hover:text-cream transition-colors duration-200" href="#promise">Why Us</a></li>
+        <li><a class="hover:text-cream transition-colors duration-200" href="#how">Order</a></li>
+        <li><a class="hover:text-cream transition-colors duration-200" href="#visit">Visit</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/919999999999?text=Hi%20Shoess%20Collection%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener"
+           class="shine shine-dark inline-flex items-center gap-2 bg-cream text-ink font-medium text-sm px-4 py-2.5 rounded-full hover:bg-cream2 transition-colors duration-200 cursor-pointer">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.7L2 22l4.4-1.5A11 11 0 1 0 20.5 3.5Zm-8.4 17a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.9.9-2.5-.2-.3a9 9 0 1 1 6.8 3.4Zm5-6.7c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.2-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.4.3-.5c.1-.2 0-.3 0-.5l-.7-1.6c-.2-.4-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.3.3-1 1-1 2.4s1 2.8 1.1 3c.2.2 2 3 4.8 4.2 2.3 1 2.8.8 3.3.8.5 0 1.7-.7 2-1.3.3-.7.3-1.2.2-1.3-.1-.1-.2-.2-.5-.3Z"/></svg>
+          <span class="hidden sm:inline">Order</span>
+        </a>
+        <!-- Hamburger (mobile only) -->
+        <button id="menuBtn" class="hamburger md:hidden" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileMenu" class="mobile-menu md:hidden">
+    <div class="mobile-overlay" id="menuOverlay"></div>
+    <div class="mobile-drawer">
+      <div class="flex items-center justify-between mb-10">
+        <span class="font-display text-lg text-cream">Menu</span>
+        <button id="menuClose" class="text-cream/70 hover:text-cream transition-colors" aria-label="Close menu">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <ul class="flex flex-col gap-1 text-cream/80">
+        <li><a href="#categories" class="mobile-link block py-3 px-4 rounded-xl text-lg font-display hover:bg-cream/10 transition-colors">Categories</a></li>
+        <li><a href="#bestsellers" class="mobile-link block py-3 px-4 rounded-xl text-lg font-display hover:bg-cream/10 transition-colors">Bestsellers</a></li>
+        <li><a href="#promise" class="mobile-link block py-3 px-4 rounded-xl text-lg font-display hover:bg-cream/10 transition-colors">Why Us</a></li>
+        <li><a href="#how" class="mobile-link block py-3 px-4 rounded-xl text-lg font-display hover:bg-cream/10 transition-colors">How to Order</a></li>
+        <li><a href="#visit" class="mobile-link block py-3 px-4 rounded-xl text-lg font-display hover:bg-cream/10 transition-colors">Visit Us</a></li>
+      </ul>
+      <div class="mt-auto pt-8 border-t border-cream/15">
+        <a href="https://wa.me/919999999999?text=Hi%20Shoess%20Collection%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-2 bg-cream text-ink font-medium px-6 py-3.5 rounded-full w-full text-center">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.7L2 22l4.4-1.5A11 11 0 1 0 20.5 3.5Zm-8.4 17a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.9.9-2.5-.2-.3a9 9 0 1 1 6.8 3.4Zm5-6.7c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.2-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.4.3-.5c.1-.2 0-.3 0-.5l-.7-1.6c-.2-.4-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.3.3-1 1-1 2.4s1 2.8 1.1 3c.2.2 2 3 4.8 4.2 2.3 1 2.8.8 3.3.8.5 0 1.7-.7 2-1.3.3-.7.3-1.2.2-1.3-.1-.1-.2-.2-.5-.3Z"/></svg>
+          Order on WhatsApp
+        </a>
+        <div class="mt-5 flex items-center justify-center gap-4 text-cream/50 text-xs">
+          <a href="https://www.instagram.com/shoess_collection71" target="_blank" rel="noopener" class="hover:text-cream transition-colors">Instagram</a>
+          <span>·</span>
+          <span>Bijainagar, Rajasthan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO (dark) -->
+  <section id="top" class="relative overflow-hidden bg-hero grain text-cream">
+    <div class="hidden lg:flex absolute left-6 top-0 bottom-0 items-center z-10">
+      <div class="vtext text-[11px] tracking-[0.5em] text-cream/55">SS · 26 COLLECTION</div>
+    </div>
+    <div class="hidden lg:flex absolute right-6 top-0 bottom-0 items-center z-10">
+      <div class="vtext text-[11px] tracking-[0.5em] text-cream/35">BIJAINAGAR · RAJ</div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-5 md:px-8 pt-14 sm:pt-20 md:pt-28 pb-16 sm:pb-20 md:pb-32 grid md:grid-cols-12 gap-8 md:gap-10 items-center relative z-[2]">
+
+      <div class="md:col-span-7">
+        <div class="reveal ornament ornament-left text-[11px] uppercase tracking-[0.4em] font-medium mb-7 text-cream/80">
+          <span>N° 01 — Premium Footwear Atelier</span>
+        </div>
+
+        <h1 class="hero-h1 font-display font-[600] leading-[0.92] text-[42px] sm:text-7xl md:text-[112px] tracking-[-0.02em]">
+          <span class="block rise"><span>Step Into</span></span>
+          <span class="block rise"><span style="animation-delay:.1s">The Next</span></span>
+          <span class="block rise"><span class="italic" style="animation-delay:.2s">Chapter.</span></span>
+        </h1>
+
+        <p class="reveal reveal-d2 mt-6 sm:mt-8 text-cream/70 max-w-xl text-base sm:text-lg leading-relaxed">
+          A hand-curated collection of sneakers, formals, loafers &amp; more — stitched for comfort, styled for every moment that matters. DM it, we ship it.
+        </p>
+
+        <div class="reveal reveal-d3 mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <a href="#bestsellers" class="shine shine-dark inline-flex justify-center items-center gap-2 bg-cream text-ink font-medium px-7 py-4 rounded-full hover:bg-cream2 transition-colors duration-200 cursor-pointer">
+            Explore The Collection
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/919999999999?text=Hi%20Shoess%20Collection%2C%20I%20want%20to%20see%20new%20arrivals." target="_blank" rel="noopener"
+             class="inline-flex justify-center items-center gap-2 border border-cream/30 text-cream px-7 py-4 rounded-full hover:bg-cream hover:text-ink transition-colors duration-200 cursor-pointer">
+            Chat on WhatsApp
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="reveal reveal-d4 mt-10 sm:mt-16 grid grid-cols-3 gap-3 sm:gap-6 max-w-lg">
+          <div class="border-l border-cream/30 pl-3 sm:pl-5">
+            <div class="stat-num font-display text-3xl sm:text-4xl md:text-5xl text-cream"><span data-count="5000" data-suffix="+">0</span></div>
+            <div class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-cream/55 mt-1 sm:mt-2">Orders Shipped</div>
+          </div>
+          <div class="border-l border-cream/30 pl-3 sm:pl-5">
+            <div class="stat-num font-display text-3xl sm:text-4xl md:text-5xl text-cream"><span data-count="240" data-suffix="+">0</span></div>
+            <div class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-cream/55 mt-1 sm:mt-2">Styles Live</div>
+          </div>
+          <div class="border-l border-cream/30 pl-3 sm:pl-5">
+            <div class="stat-num font-display text-3xl sm:text-4xl md:text-5xl text-cream"><span data-count="4.9" data-decimals="1">0</span><span class="text-cream/40 text-lg sm:text-2xl">/5</span></div>
+            <div class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-cream/55 mt-1 sm:mt-2">Customer Rating</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature image stack -->
+      <div class="md:col-span-5 relative reveal reveal-d2">
+        <div class="relative aspect-[3/4] sm:aspect-[4/5] rounded-[20px] sm:rounded-[28px] overflow-hidden shadow-luxe border border-cream/15" data-parallax="0.12">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&q=85&auto=format&fit=crop"
+               alt="Featured premium sneaker"
+               class="tinted w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-[1.8s] ease-out" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"></div>
+          <div class="absolute left-6 bottom-6 right-6">
+            <div class="text-[10px] uppercase tracking-[0.35em] text-cream/80">Editor's Pick · SS26</div>
+            <div class="font-display italic text-2xl mt-2 text-cream">AirStride 07 · Crimson</div>
+            <div class="text-cream/65 text-sm mt-1">₹2,499 · Complimentary Shipping</div>
+          </div>
+        </div>
+        <!-- floating mini card -->
+        <div class="absolute -bottom-6 -left-6 md:-left-10 glass border border-cream/20 rounded-2xl p-4 shadow-luxe w-56 hidden md:flex items-center gap-3">
+          <div class="h-12 w-12 rounded-xl overflow-hidden border border-cream/15">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80&auto=format&fit=crop" class="tinted h-full w-full object-cover" alt="" />
+          </div>
+          <div class="leading-tight">
+            <div class="text-[10px] uppercase tracking-[0.2em] text-cream/70">Trending</div>
+            <div class="font-display text-base text-cream">Court Classic</div>
+            <div class="text-xs text-cream/55">₹1,899</div>
+          </div>
+        </div>
+        <div class="absolute -top-6 -right-6 h-24 w-24 rounded-full border border-cream/25 hidden md:block"></div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-cream/55 text-[10px] uppercase tracking-[0.4em] flex flex-col items-center gap-2 z-[2]">
+      Scroll
+      <span class="block h-10 w-px bg-gradient-to-b from-cream/70 to-transparent"></span>
+    </div>
+  </section>
+
+  <!-- MARQUEE (cream) -->
+  <section class="bg-cream text-ink py-9 overflow-hidden border-y border-cream3">
+    <div class="flex whitespace-nowrap marquee-track">
+      <ul class="flex items-center gap-14 pr-14 text-ink/85 text-2xl md:text-4xl font-display tracking-wide">
+        <li>Nike</li><li class="text-ink/30">·</li>
+        <li class="italic">Adidas</li><li class="text-ink/30">·</li>
+        <li>Puma</li><li class="text-ink/30">·</li>
+        <li class="italic">Woodland</li><li class="text-ink/30">·</li>
+        <li>Skechers</li><li class="text-ink/30">·</li>
+        <li class="italic">Campus</li><li class="text-ink/30">·</li>
+        <li>Red Tape</li><li class="text-ink/30">·</li>
+        <li class="italic">Bata</li><li class="text-ink/30">·</li>
+      </ul>
+      <ul aria-hidden="true" class="flex items-center gap-14 pr-14 text-ink/85 text-2xl md:text-4xl font-display tracking-wide">
+        <li>Nike</li><li class="text-ink/30">·</li>
+        <li class="italic">Adidas</li><li class="text-ink/30">·</li>
+        <li>Puma</li><li class="text-ink/30">·</li>
+        <li class="italic">Woodland</li><li class="text-ink/30">·</li>
+        <li>Skechers</li><li class="text-ink/30">·</li>
+        <li class="italic">Campus</li><li class="text-ink/30">·</li>
+        <li>Red Tape</li><li class="text-ink/30">·</li>
+        <li class="italic">Bata</li><li class="text-ink/30">·</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CATEGORIES (dark) -->
+  <section id="categories" class="relative py-16 sm:py-24 md:py-32 bg-dark-section grain overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 relative z-[2]">
+      <div class="flex items-end justify-between flex-wrap gap-4 sm:gap-6 mb-10 sm:mb-14">
+        <div class="reveal max-w-xl text-cream">
+          <div class="text-[11px] uppercase tracking-[0.4em] text-cream/70 mb-4">— N° 02 — Categories</div>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-6xl leading-[1.05] tracking-tight">Every pair, <br/><span class="italic">a statement.</span></h2>
+        </div>
+        <p class="reveal reveal-d1 text-cream/65 max-w-md text-[15px] leading-relaxed">From street to boardroom to weekend escapes — shelves curated for every rhythm of your day.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+        <a href="#bestsellers" class="card-lift shine group relative rounded-2xl overflow-hidden border border-ink3 bg-ink2 aspect-[4/5] reveal hover:border-cream/40">
+          <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=700&q=80&auto=format&fit=crop" class="tilt-img tinted absolute inset-0 w-full h-full object-cover opacity-80" alt="Sneakers"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent"></div>
+          <div class="absolute top-3 left-3 sm:top-5 sm:left-5 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-cream/80 font-medium">12 styles</div>
+          <div class="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between text-cream">
+            <div class="font-display text-lg sm:text-2xl md:text-3xl">Sneakers</div>
+            <svg class="h-5 w-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+
+        <a href="#bestsellers" class="card-lift shine group relative rounded-2xl overflow-hidden border border-ink3 bg-ink2 aspect-[4/5] reveal reveal-d1 hover:border-cream/40">
+          <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=700&q=80&auto=format&fit=crop" class="tilt-img tinted absolute inset-0 w-full h-full object-cover opacity-80" alt="Formals"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent"></div>
+          <div class="absolute top-3 left-3 sm:top-5 sm:left-5 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-cream/80 font-medium">18 styles</div>
+          <div class="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between text-cream">
+            <div class="font-display text-lg sm:text-2xl md:text-3xl">Formals</div>
+            <svg class="h-5 w-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+
+        <a href="#bestsellers" class="card-lift shine group relative rounded-2xl overflow-hidden border border-ink3 bg-ink2 aspect-[4/5] reveal reveal-d2 hover:border-cream/40">
+          <img src="https://images.unsplash.com/photo-1578116922645-3976907a7671?w=700&q=80&auto=format&fit=crop" class="tilt-img tinted absolute inset-0 w-full h-full object-cover opacity-80" alt="Loafers"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent"></div>
+          <div class="absolute top-3 left-3 sm:top-5 sm:left-5 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-cream/80 font-medium">9 styles</div>
+          <div class="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between text-cream">
+            <div class="font-display text-lg sm:text-2xl md:text-3xl">Loafers</div>
+            <svg class="h-5 w-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+
+        <a href="#bestsellers" class="card-lift shine group relative rounded-2xl overflow-hidden border border-ink3 bg-ink2 aspect-[4/5] reveal hover:border-cream/40">
+          <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=700&q=80&auto=format&fit=crop" class="tilt-img tinted absolute inset-0 w-full h-full object-cover opacity-80" alt="Sports"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent"></div>
+          <div class="absolute top-3 left-3 sm:top-5 sm:left-5 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-cream/80 font-medium">15 styles</div>
+          <div class="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between text-cream">
+            <div class="font-display text-lg sm:text-2xl md:text-3xl">Sports</div>
+            <svg class="h-5 w-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+
+        <a href="#bestsellers" class="card-lift shine group relative rounded-2xl overflow-hidden border border-ink3 bg-ink2 aspect-[4/5] reveal reveal-d1 hover:border-cream/40">
+          <img src="https://images.unsplash.com/photo-1520256862855-398228c41684?w=700&q=80&auto=format&fit=crop" class="tilt-img tinted absolute inset-0 w-full h-full object-cover opacity-80" alt="Boots"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent"></div>
+          <div class="absolute top-3 left-3 sm:top-5 sm:left-5 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-cream/80 font-medium">7 styles</div>
+          <div class="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between text-cream">
+            <div class="font-display text-lg sm:text-2xl md:text-3xl">Boots</div>
+            <svg class="h-5 w-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+
+        <a href="#bestsellers" class="card-lift shine group relative rounded-2xl overflow-hidden border border-ink3 bg-ink2 aspect-[4/5] reveal reveal-d2 hover:border-cream/40">
+          <img src="https://images.unsplash.com/photo-1603487742131-4160ec999306?w=700&q=80&auto=format&fit=crop" class="tilt-img tinted absolute inset-0 w-full h-full object-cover opacity-80" alt="Sandals"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent"></div>
+          <div class="absolute top-3 left-3 sm:top-5 sm:left-5 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-cream/80 font-medium">11 styles</div>
+          <div class="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex items-end justify-between text-cream">
+            <div class="font-display text-lg sm:text-2xl md:text-3xl">Sandals &amp; Slides</div>
+            <svg class="h-5 w-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BESTSELLERS (cream) -->
+  <section id="bestsellers" class="relative py-16 sm:py-24 md:py-32 bg-cream-section grain grain-light text-ink overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 relative z-[2]">
+      <div class="flex items-end justify-between flex-wrap gap-4 sm:gap-6 mb-10 sm:mb-14">
+        <div class="reveal">
+          <div class="text-[11px] uppercase tracking-[0.4em] text-ink/65 mb-4 font-medium">— N° 03 — Bestsellers</div>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-6xl leading-[1.05] tracking-tight text-ink">The ones <span class="italic">everyone wants.</span></h2>
+        </div>
+        <a href="https://wa.me/919999999999?text=Send%20me%20the%20full%20catalog%20please." target="_blank" rel="noopener" class="reveal reveal-d1 text-sm text-ink/75 hover:text-ink transition-colors inline-flex items-center gap-2 cursor-pointer border-b border-ink/30 hover:border-ink pb-1">
+          Request full catalog
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+
+        <article class="card-lift reveal group bg-cream rounded-2xl border border-ink/10 overflow-hidden hover:border-ink/40 shadow-card">
+          <div class="relative aspect-square overflow-hidden bg-cream2">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&q=85&auto=format&fit=crop" alt="White court sneaker" class="tilt-img tinted w-full h-full object-cover" />
+            <span class="absolute top-4 left-4 text-[10px] uppercase tracking-[0.2em] bg-ink text-cream px-2.5 py-1 rounded-full font-medium">New</span>
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-display text-xl text-ink">Court Classic</h3>
+              <div class="text-ink font-semibold">₹1,899</div>
+            </div>
+            <p class="text-ink/55 text-sm mt-1">Minimal white leather · unisex</p>
+            <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Court%20Classic" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:opacity-70 transition-opacity cursor-pointer group/btn">
+              <span class="border-b border-ink/40 pb-0.5">Order on WhatsApp</span>
+              <svg class="h-4 w-4 transition-transform group-hover/btn:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="card-lift reveal reveal-d1 group bg-cream rounded-2xl border border-ink/10 overflow-hidden hover:border-ink/40 shadow-card">
+          <div class="relative aspect-square overflow-hidden bg-cream2">
+            <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=800&q=85&auto=format&fit=crop" alt="Black runner" class="tilt-img tinted w-full h-full object-cover" />
+            <span class="absolute top-4 left-4 text-[10px] uppercase tracking-[0.2em] bg-cream text-ink border border-ink/40 px-2.5 py-1 rounded-full">Bestseller</span>
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-display text-xl text-ink">AirStride 07</h3>
+              <div class="text-ink font-semibold">₹2,499</div>
+            </div>
+            <p class="text-ink/55 text-sm mt-1">Cushioned sole · everyday runner</p>
+            <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20AirStride%2007" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:opacity-70 transition-opacity cursor-pointer group/btn">
+              <span class="border-b border-ink/40 pb-0.5">Order on WhatsApp</span>
+              <svg class="h-4 w-4 transition-transform group-hover/btn:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="card-lift reveal reveal-d2 group bg-cream rounded-2xl border border-ink/10 overflow-hidden hover:border-ink/40 shadow-card">
+          <div class="relative aspect-square overflow-hidden bg-cream2">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=85&auto=format&fit=crop" alt="Brown formal derby" class="tilt-img tinted w-full h-full object-cover" />
+            <span class="absolute top-4 left-4 text-[10px] uppercase tracking-[0.2em] bg-ink text-cream px-2.5 py-1 rounded-full font-medium italic">Premium</span>
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-display text-xl text-ink">Oxford Noir</h3>
+              <div class="text-ink font-semibold">₹3,299</div>
+            </div>
+            <p class="text-ink/55 text-sm mt-1">Genuine leather · office formal</p>
+            <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Oxford%20Noir" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:opacity-70 transition-opacity cursor-pointer group/btn">
+              <span class="border-b border-ink/40 pb-0.5">Order on WhatsApp</span>
+              <svg class="h-4 w-4 transition-transform group-hover/btn:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="card-lift reveal group bg-cream rounded-2xl border border-ink/10 overflow-hidden hover:border-ink/40 shadow-card">
+          <div class="relative aspect-square overflow-hidden bg-cream2">
+            <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800&q=85&auto=format&fit=crop" alt="Tan loafer" class="tilt-img tinted w-full h-full object-cover" />
+            <span class="absolute top-4 left-4 text-[10px] uppercase tracking-[0.2em] bg-cream text-ink border border-ink/40 px-2.5 py-1 rounded-full font-medium italic">Trending</span>
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-display text-xl text-ink">Milano Loafer</h3>
+              <div class="text-ink font-semibold">₹2,199</div>
+            </div>
+            <p class="text-ink/55 text-sm mt-1">Tan suede · slip-on comfort</p>
+            <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Milano%20Loafer" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:opacity-70 transition-opacity cursor-pointer group/btn">
+              <span class="border-b border-ink/40 pb-0.5">Order on WhatsApp</span>
+              <svg class="h-4 w-4 transition-transform group-hover/btn:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="card-lift reveal reveal-d1 group bg-cream rounded-2xl border border-ink/10 overflow-hidden hover:border-ink/40 shadow-card">
+          <div class="relative aspect-square overflow-hidden bg-cream2">
+            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&q=85&auto=format&fit=crop" alt="Retro sneaker" class="tilt-img tinted w-full h-full object-cover" />
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-display text-xl text-ink">Retro Wave</h3>
+              <div class="text-ink font-semibold">₹1,699</div>
+            </div>
+            <p class="text-ink/55 text-sm mt-1">Chunky retro · street edit</p>
+            <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Retro%20Wave" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:opacity-70 transition-opacity cursor-pointer group/btn">
+              <span class="border-b border-ink/40 pb-0.5">Order on WhatsApp</span>
+              <svg class="h-4 w-4 transition-transform group-hover/btn:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="card-lift reveal reveal-d2 group bg-cream rounded-2xl border border-ink/10 overflow-hidden hover:border-ink/40 shadow-card">
+          <div class="relative aspect-square overflow-hidden bg-cream2">
+            <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=800&q=85&auto=format&fit=crop" alt="Slider sandal" class="tilt-img tinted w-full h-full object-cover" />
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="flex items-baseline justify-between">
+              <h3 class="font-display text-xl text-ink">Glide Slides</h3>
+              <div class="text-ink font-semibold">₹899</div>
+            </div>
+            <p class="text-ink/55 text-sm mt-1">EVA cushion · summer ready</p>
+            <a href="https://wa.me/919999999999?text=I%20want%20to%20order%20Glide%20Slides" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:opacity-70 transition-opacity cursor-pointer group/btn">
+              <span class="border-b border-ink/40 pb-0.5">Order on WhatsApp</span>
+              <svg class="h-4 w-4 transition-transform group-hover/btn:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER QUOTE (dark) -->
+  <section class="bg-ink border-y border-ink3 py-16 text-cream">
+    <div class="max-w-4xl mx-auto px-5 md:px-8 text-center reveal">
+      <div class="ornament mb-6"><span class="font-serif text-xs tracking-[0.5em]">THE PROMISE</span></div>
+      <p class="font-display italic text-2xl md:text-4xl leading-[1.25]">"Hum pair nahi — bharosa bechte hain. Har ek jodi mere haath se check hoke jaata hai."</p>
+      <div class="mt-6 text-[11px] uppercase tracking-[0.4em] text-cream/70">— Founder · Shoess Collection</div>
+    </div>
+  </section>
+
+  <!-- WHY US (cream) -->
+  <section id="promise" class="relative py-16 sm:py-24 md:py-32 bg-cream-section grain grain-light text-ink overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 relative z-[2]">
+      <div class="grid md:grid-cols-12 gap-10">
+        <div class="md:col-span-5 reveal md:sticky md:top-24 md:self-start">
+          <div class="text-[11px] uppercase tracking-[0.4em] text-ink/65 mb-4">— N° 04 — Why Shoess</div>
+          <h2 class="font-display text-3xl sm:text-4xl md:text-6xl leading-[1.02] tracking-tight">Small town heart. <br/><span class="italic">Big city finish.</span></h2>
+          <div class="mt-6 ornament ornament-left max-w-xs"><span class="font-serif text-[10px] tracking-[0.4em]">EST · 2019</span></div>
+          <p class="text-ink/70 mt-6 max-w-md leading-relaxed">Started as a single rack in Bijainagar — today we ship hundreds of pairs across India every month. Every product personally inspected before it leaves the shop.</p>
+        </div>
+
+        <div class="md:col-span-7 grid grid-cols-2 gap-3 sm:gap-5">
+          <div class="reveal reveal-d1 rounded-2xl border border-ink/15 bg-cream p-4 sm:p-7 hover:border-ink transition-colors shadow-soft">
+            <div class="h-12 w-12 rounded-xl border border-ink/25 flex items-center justify-center">
+              <svg class="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 15 8l6 .9-4.5 4.3 1.1 6.2L12 16.8 6.4 19.4l1.1-6.2L3 8.9 9 8z"/></svg>
+            </div>
+            <h3 class="font-display text-xl mt-5">100% Genuine</h3>
+            <p class="text-ink/60 text-sm mt-2 leading-relaxed">Sourced direct from brands &amp; verified suppliers. No first copies. Ever.</p>
+          </div>
+          <div class="reveal reveal-d2 rounded-2xl border border-ink/15 bg-cream p-4 sm:p-7 hover:border-ink transition-colors shadow-soft">
+            <div class="h-12 w-12 rounded-xl border border-ink/25 flex items-center justify-center">
+              <svg class="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h13l3 4v6h-2a2 2 0 1 1-4 0H8a2 2 0 1 1-4 0H3z"/><circle cx="7" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></svg>
+            </div>
+            <h3 class="font-display text-xl mt-5">Pan-India Delivery</h3>
+            <p class="text-ink/60 text-sm mt-2 leading-relaxed">Dispatch within 24 hrs. Tracked. Cash on Delivery available everywhere.</p>
+          </div>
+          <div class="reveal reveal-d2 rounded-2xl border border-ink/15 bg-cream p-4 sm:p-7 hover:border-ink transition-colors shadow-soft">
+            <div class="h-12 w-12 rounded-xl border border-ink/25 flex items-center justify-center">
+              <svg class="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+            </div>
+            <h3 class="font-display text-xl mt-5">7-Day Easy Return</h3>
+            <p class="text-ink/60 text-sm mt-2 leading-relaxed">Size issue? Fit issue? Return picked up from your doorstep — no questions.</p>
+          </div>
+          <div class="reveal reveal-d3 rounded-2xl border border-ink/15 bg-cream p-4 sm:p-7 hover:border-ink transition-colors shadow-soft">
+            <div class="h-12 w-12 rounded-xl border border-ink/25 flex items-center justify-center">
+              <svg class="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-7.6-4.6L3 21l1.6-1.9A8.38 8.38 0 1 1 21 11.5z"/></svg>
+            </div>
+            <h3 class="font-display text-xl mt-5">Personal Style Help</h3>
+            <p class="text-ink/60 text-sm mt-2 leading-relaxed">Stuck choosing? DM us — real humans, real recommendations, real fast.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER (dark) -->
+  <section id="how" class="relative py-16 sm:py-24 md:py-32 bg-dark-section grain overflow-hidden text-cream">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 relative z-[2]">
+      <div class="reveal text-center max-w-2xl mx-auto mb-20">
+        <div class="ornament mb-6"><span class="font-serif text-[10px] tracking-[0.5em]">— N° 05 —</span></div>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-6xl leading-[1.02] tracking-tight">Three taps. <span class="italic">Done.</span></h2>
+        <p class="text-cream/65 mt-5 text-[15px] leading-relaxed">No complicated checkout. No abandoned carts. Just a conversation that ends at your doorstep.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 relative">
+        <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-cream/30 to-transparent"></div>
+
+        <div class="reveal relative rounded-2xl border border-ink3 p-8 bg-ink2">
+          <div class="absolute -top-7 left-8 h-14 w-14 rounded-full bg-cream text-ink flex items-center justify-center font-display text-2xl border-4 border-ink">1</div>
+          <h3 class="font-display text-2xl mt-5">Browse &amp; DM</h3>
+          <p class="text-cream/65 mt-3 leading-relaxed">Scroll Instagram, spot the pair, DM us the photo — or just ask "what's new?".</p>
+          <div class="mt-5 text-[11px] uppercase tracking-[0.35em] text-cream/55">Step One</div>
+        </div>
+        <div class="reveal reveal-d1 relative rounded-2xl border border-ink3 p-8 bg-ink2">
+          <div class="absolute -top-7 left-8 h-14 w-14 rounded-full bg-cream text-ink flex items-center justify-center font-display text-2xl border-4 border-ink">2</div>
+          <h3 class="font-display text-2xl mt-5">Confirm on WhatsApp</h3>
+          <p class="text-cream/65 mt-3 leading-relaxed">We send size chart, availability, final price. You confirm — COD or UPI, your call.</p>
+          <div class="mt-5 text-[11px] uppercase tracking-[0.35em] text-cream/55">Step Two</div>
+        </div>
+        <div class="reveal reveal-d2 relative rounded-2xl border border-ink3 p-8 bg-ink2">
+          <div class="absolute -top-7 left-8 h-14 w-14 rounded-full bg-cream text-ink flex items-center justify-center font-display text-2xl border-4 border-ink">3</div>
+          <h3 class="font-display text-2xl mt-5">Doorstep Delivery</h3>
+          <p class="text-cream/65 mt-3 leading-relaxed">Packed today, dispatched today. Tracked courier. Unbox &amp; tag us — we love a good flex.</p>
+          <div class="mt-5 text-[11px] uppercase tracking-[0.35em] text-cream/55">Step Three</div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d3 mt-16 text-center">
+        <a href="https://wa.me/919999999999?text=Hi%20Shoess%20Collection%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener"
+           class="shine shine-dark inline-flex items-center gap-2 bg-cream text-ink font-medium px-8 py-4 rounded-full hover:bg-cream2 transition-colors duration-200 cursor-pointer">
+          Start My Order
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (cream) -->
+  <section class="relative py-16 sm:py-24 md:py-32 bg-cream-section grain grain-light text-ink overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 relative z-[2]">
+      <div class="reveal mb-14 max-w-xl">
+        <div class="text-[11px] uppercase tracking-[0.4em] text-ink/65 mb-4">— N° 06 — Kind Words</div>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-6xl leading-[1.02] tracking-tight">From people who <span class="italic">kept coming back.</span></h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <figure class="reveal rounded-2xl border border-ink/15 bg-cream p-8 shadow-soft">
+          <svg class="h-8 w-8 text-ink/60" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h5v5H7c0 3 1 5 4 5v2c-5 0-7-3-7-8V7zm10 0h5v5h-5c0 3 1 5 4 5v2c-5 0-7-3-7-8V7z"/></svg>
+          <blockquote class="font-display text-xl leading-snug mt-5 text-ink">Ordered on Insta in the morning, got the parcel in 2 days. Quality is honestly 10× the price.</blockquote>
+          <div class="mt-5 flex text-ink gap-0.5 text-sm">★★★★★</div>
+          <figcaption class="mt-3 text-sm text-ink/55">— Rohit S. · Jaipur</figcaption>
+        </figure>
+        <figure class="reveal reveal-d1 rounded-2xl border border-ink/15 bg-cream p-8 shadow-soft">
+          <svg class="h-8 w-8 text-ink/60" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h5v5H7c0 3 1 5 4 5v2c-5 0-7-3-7-8V7zm10 0h5v5h-5c0 3 1 5 4 5v2c-5 0-7-3-7-8V7z"/></svg>
+          <blockquote class="font-display text-xl leading-snug mt-5 text-ink">Best formal shoes I've bought in years. Wore them for my wedding — comfortable the whole night.</blockquote>
+          <div class="mt-5 flex text-ink gap-0.5 text-sm">★★★★★</div>
+          <figcaption class="mt-3 text-sm text-ink/55">— Aakash M. · Ajmer</figcaption>
+        </figure>
+        <figure class="reveal reveal-d2 rounded-2xl border border-ink/15 bg-cream p-8 shadow-soft">
+          <svg class="h-8 w-8 text-ink/60" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h5v5H7c0 3 1 5 4 5v2c-5 0-7-3-7-8V7zm10 0h5v5h-5c0 3 1 5 4 5v2c-5 0-7-3-7-8V7z"/></svg>
+          <blockquote class="font-display text-xl leading-snug mt-5 text-ink">Bhaiya ne size exchange bhi ek call me karwa diya. Shop se seedha trust mila — kabhi kahin aur nahi jaungi.</blockquote>
+          <div class="mt-5 flex text-ink gap-0.5 text-sm">★★★★★</div>
+          <figcaption class="mt-3 text-sm text-ink/55">— Priya K. · Udaipur</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT US (dark) -->
+  <section id="visit" class="relative overflow-hidden bg-visit grain py-16 sm:py-24 md:py-32 text-cream">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-8 sm:gap-12 items-center relative z-[2]">
+      <div class="reveal">
+        <div class="text-[11px] uppercase tracking-[0.4em] text-cream/70 mb-4">— N° 07 — Visit Us</div>
+        <h2 class="font-display text-4xl sm:text-5xl md:text-7xl leading-[0.95] tracking-tight">Walk in. <br/><span class="italic">Try on.</span></h2>
+        <div class="mt-8 ornament ornament-left max-w-xs"><span class="font-serif text-[10px] tracking-[0.45em]">MAIN MARKET</span></div>
+        <p class="mt-6 text-cream/75 max-w-md leading-relaxed">Shoess Collection · Main Market · Bijainagar, Rajasthan 305624. Open daily, 10am — 9pm.</p>
+
+        <div class="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-md">
+          <a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="shine group rounded-2xl border border-cream/25 p-5 hover:border-cream transition-colors cursor-pointer bg-ink2/60 backdrop-blur">
+            <div class="text-[10px] uppercase tracking-[0.3em] text-cream/55">WhatsApp</div>
+            <div class="font-display text-base sm:text-lg mt-2 text-cream">+91 99999 99999</div>
+          </a>
+          <a href="https://www.instagram.com/shoess_collection71" target="_blank" rel="noopener" class="shine group rounded-2xl border border-cream/25 p-5 hover:border-cream transition-colors cursor-pointer bg-ink2/60 backdrop-blur">
+            <div class="text-[10px] uppercase tracking-[0.3em] text-cream/55">Instagram</div>
+            <div class="font-display text-base sm:text-lg mt-2 text-cream">@shoess_collection71</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d1 relative">
+        <div class="aspect-[3/4] sm:aspect-[4/5] rounded-[20px] sm:rounded-[28px] overflow-hidden border border-cream/15 shadow-luxe">
+          <img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=1200&q=85&auto=format&fit=crop" alt="Inside a premium shoe store" class="tinted w-full h-full object-cover" />
+        </div>
+        <div class="absolute -bottom-6 -left-6 glass border border-cream/25 rounded-2xl p-5 shadow-luxe max-w-[260px] hidden md:block">
+          <div class="flex items-center gap-3">
+            <span class="h-2.5 w-2.5 rounded-full bg-cream animate-pulse"></span>
+            <div class="text-[10px] uppercase tracking-[0.3em] text-cream/80">Open Now</div>
+          </div>
+          <div class="font-display text-lg mt-2">Mon — Sun · 10am — 9pm</div>
+        </div>
+        <div class="absolute -top-6 -right-6 h-28 w-28 rounded-full border border-cream/25 hidden md:block"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink border-t border-ink3 text-cream">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-10 sm:py-16 grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10">
+      <div class="col-span-2">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cream/50">
+            <svg viewBox="0 0 24 24" class="h-5 w-5 text-cream" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M3 16c1-3 3-5 6-6l4-1 2 2 4 1c1 0 2 1 2 2v2H3z"/>
+              <path d="M7 16v2M11 16v2M15 16v2"/>
+            </svg>
+          </span>
+          <span class="leading-none">
+            <span class="block font-serif text-[10px] tracking-[0.35em] text-cream/70">EST · 2019</span>
+            <span class="block font-display text-xl mt-0.5">Shoess <span class="italic">Collection</span></span>
+          </span>
+        </div>
+        <p class="text-cream/60 text-sm mt-5 max-w-sm leading-relaxed">Premium footwear, personally picked — shipped across India from our Bijainagar shop since 2019.</p>
+        <div class="mt-6 text-[11px] uppercase tracking-[0.4em] text-cream/55">Worn in Bijainagar · Loved Nationwide</div>
+      </div>
+
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.35em] text-cream/70 mb-4">Shop</div>
+        <ul class="space-y-2.5 text-sm text-cream/70">
+          <li><a href="#categories" class="hover:text-cream transition-colors">Categories</a></li>
+          <li><a href="#bestsellers" class="hover:text-cream transition-colors">Bestsellers</a></li>
+          <li><a href="#how" class="hover:text-cream transition-colors">How to Order</a></li>
+          <li><a href="#visit" class="hover:text-cream transition-colors">Visit Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.35em] text-cream/70 mb-4">Contact</div>
+        <ul class="space-y-2.5 text-sm text-cream/70">
+          <li><a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="hover:text-cream transition-colors">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/shoess_collection71" target="_blank" rel="noopener" class="hover:text-cream transition-colors">Instagram</a></li>
+          <li class="text-cream/55">Bijainagar, Rajasthan</li>
+          <li class="text-cream/55">10am — 9pm · Daily</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-ink3">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-cream/50">
+        <div>© <span id="yr"></span> Shoess Collection · All rights reserved.</div>
+        <div>Crafted with care in Rajasthan.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp FAB (two-tone) -->
+  <a href="https://wa.me/919999999999?text=Hi%20Shoess%20Collection%2C%20I%20want%20to%20order." target="_blank" rel="noopener"
+     aria-label="Order on WhatsApp"
+     class="fixed bottom-5 right-5 z-40 h-14 w-14 rounded-full bg-cream text-ink shadow-luxe flex items-center justify-center hover:scale-110 transition-transform cursor-pointer border border-ink/10">
+    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.7L2 22l4.4-1.5A11 11 0 1 0 20.5 3.5Zm-8.4 17a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.9.9-2.5-.2-.3a9 9 0 1 1 6.8 3.4Zm5-6.7c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.2-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.4.3-.5c.1-.2 0-.3 0-.5l-.7-1.6c-.2-.4-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.3.3-1 1-1 2.4s1 2.8 1.1 3c.2.2 2 3 4.8 4.2 2.3 1 2.8.8 3.3.8.5 0 1.7-.7 2-1.3.3-.7.3-1.2.2-1.3-.1-.1-.2-.2-.5-.3Z"/></svg>
+  </a>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* Mobile Menu */
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuClose = document.getElementById('menuClose');
+    function openMenu() { mobileMenu.classList.add('open'); menuBtn.classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); menuBtn.classList.remove('active'); document.body.style.overflow=''; }
+    if(menuBtn) menuBtn.addEventListener('click', openMenu);
+    if(menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+    if(menuClose) menuClose.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+    /* Reveal on scroll */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* Counter animation */
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1600;
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const val = (target * eased).toFixed(decimals);
+          el.textContent = (decimals ? val : Math.floor(+val).toLocaleString('en-IN')) + (p === 1 ? suffix : '');
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        cio.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+    /* Parallax — disable on mobile for performance */
+    const pxEls = document.querySelectorAll('[data-parallax]');
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !window.matchMedia('(max-width: 768px)').matches && pxEls.length) {
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        pxEls.forEach(el => {
+          const strength = parseFloat(el.dataset.parallax) || 0.1;
+          el.style.transform = `translateY(${y * strength * -1}px)`;
+        });
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
